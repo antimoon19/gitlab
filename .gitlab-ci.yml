@@ -90,7 +90,7 @@ pages:
     paths:
       - public
   only:
-    - development
+    - develop
 
 push_to_external_pipy_test_registry:
   stage: deploy
