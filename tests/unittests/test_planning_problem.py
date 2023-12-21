@@ -42,7 +42,6 @@ class TestPlanningProblemCreator(TestCase):
         self.ego_window = EgoWindow(vehicle_states, vehicle_meta, 1.0, [0])
 
     def test_ego_planning_problem_creator_keep_ego(self):
-
         scenario_mock = Mock()
         lanelet_network_mock = Mock()
         lanelet_network_mock.find_lanelet_by_position.return_value = [[None]]

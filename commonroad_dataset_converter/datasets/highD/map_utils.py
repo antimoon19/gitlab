@@ -199,7 +199,6 @@ def create_highd_lanelet_network(
             )
     else:
         for i in range(len(lane_markings) - 1):
-
             # get two lines of current lane
             next_lane_y = lane_markings[i + 1]
             lane_y = lane_markings[i]

@@ -11,16 +11,10 @@ __desc__ = """
 """
 
 from enum import Enum
-from typing import Optional
 
 import numpy as np
-from commonroad.common.util import AngleInterval, Interval
-from commonroad.geometry.shape import Polygon, Rectangle
-from commonroad.planning.goal import GoalRegion
-from commonroad.planning.planning_problem import PlanningProblem
+from commonroad.geometry.shape import Polygon
 from commonroad.scenario.lanelet import LaneletNetwork
-from commonroad.scenario.obstacle import DynamicObstacle
-from commonroad.scenario.trajectory import State
 from shapely.geometry import LineString, Point
 
 

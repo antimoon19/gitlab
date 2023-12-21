@@ -52,7 +52,6 @@ class TabularConverterFactory(
         pass
 
     def build_job_generator(self) -> TabularJobProducer:
-
         recoding_generator = self.build_recording_generator()
         window_generator = self.build_window_generator()
 

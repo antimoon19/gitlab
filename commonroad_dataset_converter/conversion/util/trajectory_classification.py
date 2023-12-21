@@ -2,7 +2,7 @@
 """
 
 from enum import Enum
-from typing import Iterable, List, Sequence, Tuple
+from typing import Tuple
 
 import numpy as np
 from commonroad.scenario.trajectory import Trajectory
