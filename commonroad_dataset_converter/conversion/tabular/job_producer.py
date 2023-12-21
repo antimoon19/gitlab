@@ -44,7 +44,7 @@ class TabularJobProducer(IScenarioJobProducer[TabularJob], Generic[WindowMetaT])
     def __iter__(self) -> Iterable[TabularJob]:
         for i, (window_job, window_meta) in enumerate(self.window_generator):
             if window_job.vehicle_meta.shape[0] == 0:
-                _logger.error(f"No vehicle:{window_meta.recording_meta['duration']} - {window_meta.recording_meta['frameRate']} - {co   }")
+                _logger.error(f"No vehicle:{window_meta.recording_meta['duration']} - {window_meta.recording_meta['frameRate']} - {window_meta.recording_meta['locationId']}")
                 continue
             meta_scenario = self.meta_scenario_generator(window_job, window_meta)
             planning_problem = self.planning_problem_generator(
