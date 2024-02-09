@@ -1,3 +1,4 @@
+import logging
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -18,6 +19,8 @@ from ..util.indicator_inference import (
     _generate_empty_signal_series,
 )
 from .job_producer import TabularJob
+
+_logger = logging.getLogger(__name__)
 
 
 @dataclass
@@ -105,6 +108,7 @@ class TabularJobConsumer(IScenarioJobConsumer[TabularJob]):
 
         if len(scenario.dynamic_obstacles) == 0:
             # Skip scenario if it is empty.
+            _logger.debug("Skip scenario {} since it is empty.".format(scenario.scenario_id))
             return
 
         # Write scenario file

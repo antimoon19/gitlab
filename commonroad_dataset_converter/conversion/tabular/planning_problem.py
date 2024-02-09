@@ -53,6 +53,8 @@ class EgoPlanningProblemCreator(PlanningProblemCreator):
         planning_problem_set = PlanningProblemSet()
         for ego_id in window_job.ego:
             ego_meta = window_job.vehicle_meta.loc[ego_id]
+            if ego_meta.obstacle_type not in ["car", "bus", "truck", "truck_bus"]:
+                continue
             dynamic_obstacle_shape = Rectangle(ego_meta.length, ego_meta.width)
             dynamic_obstacle_initial_state = window_job.vehicle_states.loc[ego_id].iloc[
                 0
