@@ -108,7 +108,9 @@ class TabularJobConsumer(IScenarioJobConsumer[TabularJob]):
 
         if len(scenario.dynamic_obstacles) == 0:
             # Skip scenario if it is empty.
-            _logger.debug("Skip scenario {} since it is empty.".format(scenario.scenario_id))
+            _logger.debug(
+                "Skip scenario {} since it is empty.".format(scenario.scenario_id)
+            )
             return
 
         # Write scenario file

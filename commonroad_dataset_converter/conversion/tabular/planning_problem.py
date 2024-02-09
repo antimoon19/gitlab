@@ -53,8 +53,6 @@ class EgoPlanningProblemCreator(PlanningProblemCreator):
         planning_problem_set = PlanningProblemSet()
         for ego_id in window_job.ego:
             ego_meta = window_job.vehicle_meta.loc[ego_id]
-            if ego_meta.obstacle_type not in ["car", "bus", "truck", "truck_bus"]:
-                continue
             dynamic_obstacle_shape = Rectangle(ego_meta.length, ego_meta.width)
             dynamic_obstacle_initial_state = window_job.vehicle_states.loc[ego_id].iloc[
                 0
@@ -87,16 +85,6 @@ class EgoPlanningProblemCreator(PlanningProblemCreator):
                 center=dynamic_obstacle_final_state[["x", "y"]].values,
                 orientation=dynamic_obstacle_final_state.orientation,
             )
-            # find goal lanelet
-            goal_lanelets = meta_scenario.lanelet_network.find_lanelet_by_position(
-                [dynamic_obstacle_final_state[["x", "y"]].values]
-            )
-            # TODO: Do this check already when selecting ego vehicles
-            if len(goal_lanelets[0]) == 0:
-                _logger.debug(
-                    "Selected final state for planning problem is out of road. Skipping this scenario"
-                )
-                continue
 
             goal_position = _cut_lanelet_polygon(
                 dynamic_obstacle_final_state[["x", "y"]].values,
@@ -153,7 +141,27 @@ class RandomObstaclePlanningProblemWrapper(PlanningProblemCreator):
             (num_states > 1) & (window.vehicle_meta.obstacle_type == "car")
         ]
         if len(candidates) >= self.num_planning_problems:
-            ego_ids = candidates.sample(self.num_planning_problems).index.values
+            ego_id_candidates = candidates.sample().index.values
+            ego_ids = []
+            for ego_id in ego_id_candidates:
+                if (
+                    len(
+                        meta_scenario.lanelet_network.find_lanelet_by_position(
+                            [
+                                window.vehicle_states.loc[ego_id]
+                                .iloc[-1][["x", "y"]]
+                                .values
+                            ]
+                        )[0]
+                    )
+                    > 0
+                ):
+                    ego_ids.append(ego_id)
+                if len(ego_ids) > self.num_planning_problems:
+                    break
+            if len(ego_ids) < self.num_planning_problems:
+                return super().__call__(window, meta_scenario)
+
             ego_window_job = EgoWindow(
                 window.vehicle_states, window.vehicle_meta, window.dt, ego_ids
             )
