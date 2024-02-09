@@ -157,9 +157,10 @@ class RandomObstaclePlanningProblemWrapper(PlanningProblemCreator):
                     > 0
                 ):
                     ego_ids.append(ego_id)
-                if len(ego_ids) > self.num_planning_problems:
+                if len(ego_ids) >= self.num_planning_problems:
                     break
             if len(ego_ids) < self.num_planning_problems:
+                print("bug")
                 return super().__call__(window, meta_scenario)
 
             ego_window_job = EgoWindow(
