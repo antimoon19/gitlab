@@ -141,7 +141,7 @@ class RandomObstaclePlanningProblemWrapper(PlanningProblemCreator):
             (num_states > 1) & (window.vehicle_meta.obstacle_type == "car")
         ]
         if len(candidates) >= self.num_planning_problems:
-            ego_id_candidates = candidates.sample().index.values
+            ego_id_candidates = candidates.sample(frac=1).index.values
             ego_ids = []
             for ego_id in ego_id_candidates:
                 if (
@@ -160,7 +160,6 @@ class RandomObstaclePlanningProblemWrapper(PlanningProblemCreator):
                 if len(ego_ids) >= self.num_planning_problems:
                     break
             if len(ego_ids) < self.num_planning_problems:
-                print("bug")
                 return super().__call__(window, meta_scenario)
 
             ego_window_job = EgoWindow(
