@@ -52,7 +52,9 @@ class EgoPlanningProblemCreator(PlanningProblemCreator):
         self, window_job: EgoWindow, meta_scenario: Scenario
     ) -> PlanningProblemSet:
         planning_problem_set = PlanningProblemSet()
-        for ego_id, ego_initial_time_step in zip(window_job.ego, window_job.ego_initial_time_step):
+        for ego_id, ego_initial_time_step in zip(
+            window_job.ego, window_job.ego_initial_time_step
+        ):
             ego_meta = window_job.vehicle_meta.loc[ego_id]
             dynamic_obstacle_shape = Rectangle(ego_meta.length, ego_meta.width)
             dynamic_obstacle_initial_state = window_job.vehicle_states.loc[ego_id].iloc[
@@ -153,13 +155,19 @@ class RandomObstaclePlanningProblemWrapper(PlanningProblemCreator):
         ]
         if len(candidates) >= self.num_planning_problems:
             ego_ids = candidates.sample(self.num_planning_problems).index.values
-            ego_ids_initial_time_step = []  # !22 - previously, the initial time step of planning problems was always 0.
+            ego_ids_initial_time_step = (
+                []
+            )  # !22 - previously, the initial time step of planning problems was always 0.
             for ego_id in ego_ids:
                 ego_ids_initial_time_step.append(
                     window.vehicle_states.loc[ego_id].index.min()
                 )
             ego_window_job = EgoWindow(
-                window.vehicle_states, window.vehicle_meta, window.dt, ego_ids, ego_ids_initial_time_step
+                window.vehicle_states,
+                window.vehicle_meta,
+                window.dt,
+                ego_ids,
+                ego_ids_initial_time_step,
             )
             return self.wrapped_planning_problem_creator(ego_window_job, meta_scenario)
         else:
