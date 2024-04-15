@@ -119,7 +119,6 @@
     <userOneWay>car</userOneWay>
     <userOneWay>motorcycle</userOneWay>
     <userBidirectional>priorityVehicle</userBidirectional>
-    <trafficSignRef ref="151"/>
   </lanelet>
   <lanelet id="112">
     <leftBound>
@@ -344,7 +343,6 @@
         <y>-34.1425</y>
       </point>
       <lineMarking>broad_dashed</lineMarking>
-      <trafficSignRef ref="151"/>
     </stopLine>
     <laneletType>urban</laneletType>
     <laneletType>intersection</laneletType>
@@ -352,7 +350,6 @@
     <userOneWay>car</userOneWay>
     <userOneWay>motorcycle</userOneWay>
     <userBidirectional>priorityVehicle</userBidirectional>
-    <trafficSignRef ref="151"/>
   </lanelet>
   <lanelet id="118">
     <leftBound>
@@ -480,7 +477,6 @@
     <userOneWay>car</userOneWay>
     <userOneWay>motorcycle</userOneWay>
     <userBidirectional>priorityVehicle</userBidirectional>
-    <trafficSignRef ref="149"/>
   </lanelet>
   <lanelet id="124">
     <leftBound>
@@ -834,7 +830,6 @@
         <y>-23.9425</y>
       </point>
       <lineMarking>broad_dashed</lineMarking>
-      <trafficSignRef ref="150"/>
     </stopLine>
     <laneletType>urban</laneletType>
     <laneletType>intersection</laneletType>
@@ -842,7 +837,6 @@
     <userOneWay>car</userOneWay>
     <userOneWay>motorcycle</userOneWay>
     <userBidirectional>priorityVehicle</userBidirectional>
-    <trafficSignRef ref="150"/>
   </lanelet>
   <lanelet id="140">
     <leftBound>
@@ -1118,7 +1112,6 @@
     <userOneWay>car</userOneWay>
     <userOneWay>motorcycle</userOneWay>
     <userBidirectional>priorityVehicle</userBidirectional>
-    <trafficSignRef ref="150"/>
   </lanelet>
   <lanelet id="117">
     <leftBound>
@@ -1295,7 +1288,6 @@
     <userOneWay>car</userOneWay>
     <userOneWay>motorcycle</userOneWay>
     <userBidirectional>priorityVehicle</userBidirectional>
-    <trafficSignRef ref="148"/>
   </lanelet>
   <lanelet id="122">
     <leftBound>
@@ -1442,8 +1434,6 @@
         <y>-27.6425</y>
       </point>
       <lineMarking>broad_dashed</lineMarking>
-      <trafficSignRef ref="148"/>
-      <trafficSignRef ref="149"/>
     </stopLine>
     <laneletType>urban</laneletType>
     <laneletType>intersection</laneletType>
@@ -1451,8 +1441,6 @@
     <userOneWay>car</userOneWay>
     <userOneWay>motorcycle</userOneWay>
     <userBidirectional>priorityVehicle</userBidirectional>
-    <trafficSignRef ref="148"/>
-    <trafficSignRef ref="149"/>
   </lanelet>
   <lanelet id="146">
     <leftBound>
@@ -1536,8 +1524,6 @@
         <y>-33.3425</y>
       </point>
       <lineMarking>broad_dashed</lineMarking>
-      <trafficSignRef ref="148"/>
-      <trafficSignRef ref="151"/>
     </stopLine>
     <laneletType>urban</laneletType>
     <laneletType>intersection</laneletType>
@@ -1545,8 +1531,6 @@
     <userOneWay>car</userOneWay>
     <userOneWay>motorcycle</userOneWay>
     <userBidirectional>priorityVehicle</userBidirectional>
-    <trafficSignRef ref="148"/>
-    <trafficSignRef ref="151"/>
   </lanelet>
   <lanelet id="136">
     <leftBound>
@@ -1680,8 +1664,10 @@
     <predecessor ref="106"/>
     <successor ref="141"/>
     <adjacentLeft ref="146" drivingDir="opposite"/>
-    <laneletType>unknown</laneletType>
     <laneletType>intersection</laneletType>
+    <userOneWay>bicycle</userOneWay>
+    <userOneWay>car</userOneWay>
+    <userOneWay>motorcycle</userOneWay>
     <userBidirectional>priorityVehicle</userBidirectional>
   </lanelet>
   <lanelet id="127">
@@ -2052,54 +2038,6 @@
       <isLeftOf ref="1001"/>
     </incoming>
   </intersection>
-  <trafficSign id="151">
-    <trafficSignElement>
-      <trafficSignID>301</trafficSignID>
-    </trafficSignElement>
-    <position>
-      <point>
-        <x>39.8225</x>
-        <y>-35.3425</y>
-      </point>
-    </position>
-    <virtual>false</virtual>
-  </trafficSign>
-  <trafficSign id="150">
-    <trafficSignElement>
-      <trafficSignID>205</trafficSignID>
-    </trafficSignElement>
-    <position>
-      <point>
-        <x>40.5725</x>
-        <y>-20.9425</y>
-      </point>
-    </position>
-    <virtual>false</virtual>
-  </trafficSign>
-  <trafficSign id="149">
-    <trafficSignElement>
-      <trafficSignID>301</trafficSignID>
-    </trafficSignElement>
-    <position>
-      <point>
-        <x>58.3125</x>
-        <y>-23.7425</y>
-      </point>
-    </position>
-    <virtual>false</virtual>
-  </trafficSign>
-  <trafficSign id="148">
-    <trafficSignElement>
-      <trafficSignID>205</trafficSignID>
-    </trafficSignElement>
-    <position>
-      <point>
-        <x>53.2925</x>
-        <y>-34.7425</y>
-      </point>
-    </position>
-    <virtual>false</virtual>
-  </trafficSign>
   <intersection id="1000">
     <incoming id="1001">
       <incomingLanelet ref="106"/>
