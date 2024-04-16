@@ -78,6 +78,7 @@
     </rightBound>
     <adjacentRight ref="36" drivingDir="same"/>
     <laneletType>urban</laneletType>
+    <trafficSignRef ref="65"/>
   </lanelet>
   <lanelet id="36">
     <leftBound>
@@ -142,6 +143,7 @@
     </rightBound>
     <adjacentLeft ref="35" drivingDir="same"/>
     <laneletType>urban</laneletType>
+    <trafficSignRef ref="65"/>
   </lanelet>
   <lanelet id="39">
     <leftBound>
@@ -183,6 +185,7 @@
     <predecessor ref="40"/>
     <predecessor ref="42"/>
     <laneletType>urban</laneletType>
+    <trafficSignRef ref="65"/>
   </lanelet>
   <lanelet id="42">
     <leftBound>
@@ -217,6 +220,7 @@
     <successor ref="39"/>
     <adjacentRight ref="40" drivingDir="same"/>
     <laneletType>urban</laneletType>
+    <trafficSignRef ref="65"/>
   </lanelet>
   <lanelet id="40">
     <leftBound>
@@ -251,6 +255,7 @@
     <successor ref="39"/>
     <adjacentLeft ref="42" drivingDir="same"/>
     <laneletType>urban</laneletType>
+    <trafficSignRef ref="65"/>
   </lanelet>
   <lanelet id="41">
     <leftBound>
@@ -300,6 +305,7 @@
     <successor ref="42"/>
     <adjacentRight ref="43" drivingDir="same"/>
     <laneletType>urban</laneletType>
+    <trafficSignRef ref="65"/>
   </lanelet>
   <lanelet id="43">
     <leftBound>
@@ -349,5 +355,13 @@
     <successor ref="40"/>
     <adjacentLeft ref="41" drivingDir="same"/>
     <laneletType>urban</laneletType>
+    <trafficSignRef ref="65"/>
   </lanelet>
+  <trafficSign id="65">
+      <trafficSignElement>
+        <trafficSignID>274</trafficSignID>
+        <additionalValue>16.363933</additionalValue>
+      </trafficSignElement>
+      <virtual>true</virtual>
+  </trafficSign>
 </commonRoad>
