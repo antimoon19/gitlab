@@ -55,8 +55,14 @@ class EgoPlanningProblemCreator(PlanningProblemCreator):
         planning_problem_set = PlanningProblemSet()
         time_step_offset = 0
         if self.obstacles_start_at_zero:
-            time_step_offset = int(window_job.vehicle_states.index.get_level_values(-1).min() / self.downsample)
-            assert time_step_offset * self.downsample == window_job.vehicle_states.index.get_level_values(-1).min()  # otherwise the time step is not divisible by downsample
+            time_step_offset = int(
+                window_job.vehicle_states.index.get_level_values(-1).min()
+                / self.downsample
+            )
+            assert (
+                time_step_offset * self.downsample
+                == window_job.vehicle_states.index.get_level_values(-1).min()
+            )  # otherwise, the time step is not divisible by downsample
         for ego_id, ego_initial_time_step in zip(
             window_job.ego, window_job.ego_initial_time_step
         ):
@@ -82,10 +88,13 @@ class EgoPlanningProblemCreator(PlanningProblemCreator):
             final_time_step = min(
                 window_job.vehicle_states.loc[ego_id].index.max()
                 + self.time_step_half_range,
-                window_job.vehicle_states.index.get_level_values(-1).max()
+                window_job.vehicle_states.index.get_level_values(-1).max(),
             )
 
-            time_step_interval = Interval(ego_initial_time_step - time_step_offset, final_time_step - time_step_offset)
+            time_step_interval = Interval(
+                ego_initial_time_step - time_step_offset,
+                final_time_step - time_step_offset,
+            )
 
             goal_shape = Rectangle(
                 length=dynamic_obstacle_shape.length + 2.0,

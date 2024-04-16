@@ -114,7 +114,9 @@ class TabularConverterFactory(
         if self.num_planning_problems <= 0:
             planning_problem_creator = PlanningProblemCreator()
         else:
-            planning_problem_creator = EgoPlanningProblemCreator(self.keep_ego, self.obstacles_start_at_zero, self.downsample)
+            planning_problem_creator = EgoPlanningProblemCreator(
+                self.keep_ego, self.obstacles_start_at_zero, self.downsample
+            )
 
         if self.num_time_steps is not None:
             planning_problem_creator = RandomObstaclePlanningProblemWrapper(

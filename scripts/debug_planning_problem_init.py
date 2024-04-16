@@ -1,9 +1,8 @@
 from pathlib import Path
-from typer.testing import CliRunner
-import typer
-from commonroad_dataset_converter.main import cli
 
-# cli = typer.Typer(help="Generates CommonRoad scenarios from different datasets")
+from typer.testing import CliRunner
+
+from commonroad_dataset_converter.main import cli
 
 input = Path("/home/florian/datasets/mona.cps.cit.tum.de/processed/east")
 output = Path(__file__).parents[1].joinpath("output_debug_mona")
