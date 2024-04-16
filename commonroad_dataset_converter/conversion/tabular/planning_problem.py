@@ -42,8 +42,9 @@ class EgoPlanningProblemCreator(PlanningProblemCreator):
     Constraints on the goal time step, orientation, and velocity can be specified by interval half ranges.
     """
 
-    #: Whether to keep the original ego vehicle's in the scenario.
     keep_ego: bool
+    obstacles_start_at_zero: bool
+    downsample: int
     orientation_half_range: float = 0.2  # rad
     velocity_half_range: float = 10.0  # m/s
     time_step_half_range: int = 25  # 1
@@ -52,6 +53,10 @@ class EgoPlanningProblemCreator(PlanningProblemCreator):
         self, window_job: EgoWindow, meta_scenario: Scenario
     ) -> PlanningProblemSet:
         planning_problem_set = PlanningProblemSet()
+        time_step_offset = 0
+        if self.obstacles_start_at_zero:
+            time_step_offset = int(window_job.vehicle_states.index.get_level_values(-1).min() / self.downsample)
+            assert time_step_offset * self.downsample == window_job.vehicle_states.index.get_level_values(-1).min()  # otherwise the time step is not divisible by downsample
         for ego_id, ego_initial_time_step in zip(
             window_job.ego, window_job.ego_initial_time_step
         ):
@@ -77,10 +82,10 @@ class EgoPlanningProblemCreator(PlanningProblemCreator):
             final_time_step = min(
                 window_job.vehicle_states.loc[ego_id].index.max()
                 + self.time_step_half_range,
-                window_job.vehicle_states.index.get_level_values(-1).max(),
+                window_job.vehicle_states.index.get_level_values(-1).max()
             )
 
-            time_step_interval = Interval(0, final_time_step)
+            time_step_interval = Interval(ego_initial_time_step - time_step_offset, final_time_step - time_step_offset)
 
             goal_shape = Rectangle(
                 length=dynamic_obstacle_shape.length + 2.0,
@@ -124,7 +129,7 @@ class EgoPlanningProblemCreator(PlanningProblemCreator):
             planning_problem = PlanningProblem(
                 ego_id + 100000,
                 InitialState(
-                    time_step=ego_initial_time_step,
+                    time_step=ego_initial_time_step - time_step_offset,
                     position=dynamic_obstacle_initial_state[["x", "y"]].values,
                     **dynamic_obstacle_initial_state.drop(labels=["x", "y"]),
                 ),
