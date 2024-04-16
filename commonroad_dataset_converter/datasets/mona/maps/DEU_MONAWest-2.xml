@@ -63,6 +63,22 @@
         <x>-192.8387</x>
         <y>-23.1651</y>
       </point>
+      <point>
+        <x>-194.9856</x>
+        <y>-26.5938</y>
+      </point>
+      <point>
+        <x>-197.1875</x>
+        <y>-29.9844</y>
+      </point>
+      <point>
+        <x>-199.6833</x>
+        <y>-33.1687</y>
+      </point>
+      <point>
+        <x>-202.6379</x>
+        <y>-35.9079</y>
+      </point>
     </leftBound>
     <rightBound>
       <point>
@@ -77,11 +93,28 @@
         <x>-197.363</x>
         <y>-20.3316</y>
       </point>
+      <point>
+        <x>-199.1767</x>
+        <y>-23.3602</y>
+      </point>
+      <point>
+        <x>-200.9905</x>
+        <y>-26.3889</y>
+      </point>
+      <point>
+        <x>-202.9796</x>
+        <y>-29.3046</y>
+      </point>
+      <point>
+        <x>-205.2894</x>
+        <y>-31.9531</y>
+      </point>
     </rightBound>
     <successor ref="4"/>
     <adjacentLeft ref="1" drivingDir="opposite"/>
     <laneletType>urban</laneletType>
     <trafficSignRef ref="101"/>
+    <trafficSignRef ref="102"/>
   </lanelet>
   <lanelet id="5">
     <leftBound>
@@ -2045,22 +2078,6 @@
   <lanelet id="4">
     <leftBound>
       <point>
-        <x>-192.8387</x>
-        <y>-23.1651</y>
-      </point>
-      <point>
-        <x>-194.9856</x>
-        <y>-26.5938</y>
-      </point>
-      <point>
-        <x>-197.1875</x>
-        <y>-29.9844</y>
-      </point>
-      <point>
-        <x>-199.6833</x>
-        <y>-33.1687</y>
-      </point>
-      <point>
         <x>-202.6379</x>
         <y>-35.9079</y>
       </point>
@@ -2098,22 +2115,6 @@
       </point>
     </leftBound>
     <rightBound>
-      <point>
-        <x>-197.363</x>
-        <y>-20.3316</y>
-      </point>
-      <point>
-        <x>-199.1767</x>
-        <y>-23.3602</y>
-      </point>
-      <point>
-        <x>-200.9905</x>
-        <y>-26.3889</y>
-      </point>
-      <point>
-        <x>-202.9796</x>
-        <y>-29.3046</y>
-      </point>
       <point>
         <x>-205.2894</x>
         <y>-31.9531</y>
@@ -2530,7 +2531,7 @@
   <trafficSign id="100">
     <trafficSignElement>
       <trafficSignID>274</trafficSignID>
-      <additionalValue>16.363933</additionalValue>
+      <additionalValue>16.667</additionalValue>
     </trafficSignElement>
     <virtual>true</virtual>
   </trafficSign>
@@ -2541,7 +2542,12 @@
     </trafficSignElement>
     <virtual>true</virtual>
   </trafficSign>
-
+  <trafficSign id="102">
+    <trafficSignElement>
+        <trafficSignID>205</trafficSignID>
+    </trafficSignElement>
+    <virtual>true</virtual>
+  </trafficSign>
   <intersection id="38">
     <incoming id="35">
       <incomingLanelet ref="3"/>

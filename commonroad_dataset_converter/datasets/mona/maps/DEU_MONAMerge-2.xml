@@ -360,7 +360,7 @@
   <trafficSign id="65">
       <trafficSignElement>
         <trafficSignID>274</trafficSignID>
-        <additionalValue>16.363933</additionalValue>
+        <additionalValue>16.667</additionalValue>
       </trafficSignElement>
       <virtual>true</virtual>
   </trafficSign>
