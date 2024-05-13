@@ -20,6 +20,7 @@ _logger = logging.getLogger(__name__)
 @dataclass
 class EgoWindow(Window):
     ego: Sequence[int]
+    ego_initial_time_step: Sequence[int]
 
 
 class PlanningProblemCreator:
@@ -41,8 +42,9 @@ class EgoPlanningProblemCreator(PlanningProblemCreator):
     Constraints on the goal time step, orientation, and velocity can be specified by interval half ranges.
     """
 
-    #: Whether to keep the original ego vehicle's in the scenario.
     keep_ego: bool
+    obstacles_start_at_zero: bool
+    downsample: int
     orientation_half_range: float = 0.2  # rad
     velocity_half_range: float = 10.0  # m/s
     time_step_half_range: int = 25  # 1
@@ -51,7 +53,12 @@ class EgoPlanningProblemCreator(PlanningProblemCreator):
         self, window_job: EgoWindow, meta_scenario: Scenario
     ) -> PlanningProblemSet:
         planning_problem_set = PlanningProblemSet()
-        for ego_id in window_job.ego:
+        time_step_offset = 0
+        if self.obstacles_start_at_zero:
+            time_step_offset = window_job.vehicle_states.index.get_level_values(-1).min()
+        for ego_id, ego_initial_time_step in zip(
+            window_job.ego, window_job.ego_initial_time_step
+        ):
             ego_meta = window_job.vehicle_meta.loc[ego_id]
             dynamic_obstacle_shape = Rectangle(ego_meta.length, ego_meta.width)
             dynamic_obstacle_initial_state = window_job.vehicle_states.loc[ego_id].iloc[
@@ -77,7 +84,10 @@ class EgoPlanningProblemCreator(PlanningProblemCreator):
                 window_job.vehicle_states.index.get_level_values(-1).max(),
             )
 
-            time_step_interval = Interval(0, final_time_step)
+            time_step_interval = Interval(
+                ego_initial_time_step - time_step_offset,
+                final_time_step - time_step_offset,
+            )
 
             goal_shape = Rectangle(
                 length=dynamic_obstacle_shape.length + 2.0,
@@ -121,7 +131,7 @@ class EgoPlanningProblemCreator(PlanningProblemCreator):
             planning_problem = PlanningProblem(
                 ego_id + 100000,
                 InitialState(
-                    time_step=0,
+                    time_step=ego_initial_time_step - time_step_offset,
                     position=dynamic_obstacle_initial_state[["x", "y"]].values,
                     **dynamic_obstacle_initial_state.drop(labels=["x", "y"]),
                 ),
@@ -152,8 +162,19 @@ class RandomObstaclePlanningProblemWrapper(PlanningProblemCreator):
         ]
         if len(candidates) >= self.num_planning_problems:
             ego_ids = candidates.sample(self.num_planning_problems).index.values
+            ego_ids_initial_time_step = (
+                []
+            )  # !22 - previously, the initial time step of planning problems was always 0.
+            for ego_id in ego_ids:
+                ego_ids_initial_time_step.append(
+                    window.vehicle_states.loc[ego_id].index.min()
+                )
             ego_window_job = EgoWindow(
-                window.vehicle_states, window.vehicle_meta, window.dt, ego_ids
+                window.vehicle_states,
+                window.vehicle_meta,
+                window.dt,
+                ego_ids,
+                ego_ids_initial_time_step,
             )
             return self.wrapped_planning_problem_creator(ego_window_job, meta_scenario)
         else:
