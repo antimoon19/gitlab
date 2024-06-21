@@ -11,7 +11,6 @@ from commonroad.scenario.obstacle import DynamicObstacle, ObstacleType
 from commonroad.scenario.scenario import Scenario
 from commonroad.scenario.state import CustomState, InitialState
 from commonroad.scenario.trajectory import Trajectory
-
 from ..interface import IScenarioJobConsumer
 from ..util.indicator_inference import (
     _add_indicator_lights_based_on_trajectory,
@@ -156,7 +155,7 @@ def _create_obstacle(
     }
     dynamic_obstacle_initial_state = InitialState(**kwargs)
 
-    dynamic_obstacle_trajectory = Trajectory(state_list[1].time_step, state_list[1:])
+    dynamic_obstacle_trajectory = Trajectory(state_list[0].time_step, state_list[0:])
     dynamic_obstacle_prediction = TrajectoryPrediction(
         dynamic_obstacle_trajectory, dynamic_obstacle_shape
     )

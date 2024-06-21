@@ -1,0 +1,186 @@
+
+
+
+
+STATS Road network:
+###################################################################################################################################
+        Road network length                        [km]:                4.66
+        Road count                                     :                  27
+        Path count                                     :                  84
+        Number of Junctions                            :                  10
+        Junction connections min count                 :                   4
+        Junction connections max count                 :                  18
+        Junction connections avg count                 :                8.40
+
+        Length roads                                [m]:             2089.98
+        Length junction pathes                      [m]:             2567.23
+        Road length min                             [m]:                3.25
+        Road length max                             [m]:              206.37
+        Path length min                             [m]:               16.69
+        Path length max                             [m]:               58.16
+        Road radius min                             [m]:               14.00
+        Road elevation min                          [m]:              507.32
+        Road elevation max                          [m]:              510.09
+        Road elevation avg                          [m]:              509.17
+        Road elevation range                        [m]:                2.76
+        Road slope max                              [°]:                0.03
+        Road slope avg                              [°]:                0.01
+
+        Road types included                            :              town
+
+
+
+
+STATS Lanes:
+###################################################################################################################################
+        Road (drivable area) width min              [m]:                2.54
+        Road (drivable area) width max              [m]:               11.72
+        Driving lane width max                      [m]:                0.00
+        Lane layouts (driving_lanes)                   :                0:1,1:1,0:2,1:2,0:3
+        Driving lane count min                         :                   1
+        Driving lane count max                         :                   3
+        Driving lane count (one direction) min         :                   1
+        Driving lane count (one direction) max         :                   3
+        Lane speed min                            [km/h]:                30.0
+        Lane speed max                            [km/h]:                50.0
+        Lane types included                            :                none,driving,biking,shoulder,border,sidewalk,parking,restricted,roadWorks,tram,median
+
+
+
+
+STATS Objects:
+###################################################################################################################################
+
+       count      type                 subType              name                 attributes                                 geometry             (attributes-repeat)
+       -----------------------------------------------------------------------------------------------------------------------------------------------------------------
+       21         barrier              na                   fence                validLength                              | repeat               (s,length,tStart,tEnd,widthStart,widthEnd,heightStart,heightEnd,zOffsetStart,zOffsetEnd)
+       16         barrier              na                   railing              validLength                              | repeat               (s,length,tStart,tEnd,widthStart,widthEnd,heightStart,heightEnd,zOffsetStart,zOffsetEnd)
+       9          barrier              na                   raisedMedian         hdg                                      | outlineLocal         (-)
+       9          barrier              na                   wall                 hdg                                      | outlineLocal         (-)
+       94         building             na                   building             hdg                                      | outlineLocal         (-)
+       3          building             na                   busStop              hdg                                      | outlineLocal         (-)
+       24         obstacle             na                   controllerBox        hdg,length,width                         | outlineLocal         (-)
+       1          obstacle             na                   hydrant              hdg,length,width                         | outlineLocal         (-)
+       3          obstacle             na                   pillar               hdg,length,width                         | outlineLocal         (-)
+       2          obstacle             na                   unknown              hdg,length,width                         | outlineLocal         (-)
+       37         pole                 na                   pole                 validLength,hdg,height,radius            | point                (-)
+       17         pole                 na                   streetLamp           validLength,hdg,height,radius            | point                (-)
+       21         pole                 na                   trafficLight         validLength,hdg,height,radius            | point                (-)
+       43         pole                 na                   trafficSign          validLength,hdg,height,radius            | point                (-)
+       8          roadMark             na                   arrowLeft            hdg                                      | outlineLocal         (-)
+       3          roadMark             na                   arrowLeft            hdg,length,width                         | outlineLocal         (-)
+       1          roadMark             na                   arrowMergeRight      hdg                                      | outlineLocal         (-)
+       3          roadMark             na                   arrowRight           hdg                                      | outlineLocal         (-)
+       2          roadMark             na                   arrowRight           hdg,length,width                         | outlineLocal         (-)
+       15         roadMark             na                   arrowStraight        hdg                                      | outlineLocal         (-)
+       5          roadMark             na                   arrowStraightRight   hdg                                      | outlineLocal         (-)
+       3          roadMark             na                   arrowStraightRight   hdg,length,width                         | outlineLocal         (-)
+       12         roadMark             na                   crossWalk            hdg                                      | outlineLocal         (-)
+       15         roadMark             na                   crossWalk            hdg,length,width                         | outlineLocal         (-)
+       8          roadMark             na                   roadMark             hdg                                      | outlineLocal         (-)
+       26         roadMark             na                   stopLine             hdg                                      | outlineLocal         (-)
+       1          roadMark             na                   stopLine             hdg,length,width                         | outlineLocal         (-)
+       4          roadMark             na                   symbol_s             hdg                                      | outlineLocal         (-)
+       1          roadMark             na                   symbol_s             hdg,length,width                         | outlineLocal         (-)
+       176        tree                 na                   tree                 validLength,hdg,height,radius            | point                (-)
+       171        vegetation           na                   vegetation           validLength,hdg,height,radius            | point                (-)
+       ----      
+       754        total
+
+       Tunnel / Bridge
+       -----------------------------------------
+       0          tunnel               (0.00m total length)
+       0          bridge               (0.00m total length)
+
+
+
+
+STATS Signals:
+###################################################################################################################################
+       139        name = AdditionalSigns     
+       118        name = InformationSigns    
+       3          name = Private_Company     
+       29         name = Private_Parking     
+       18         name = Private_Text        
+       262        name = RegulatorySigns     
+       1          name = RoadEquipment       
+       50         name = TrafficLight        
+       11         name = WarningSigns        
+
+       count      type                 subType              name                
+       -----------------------------------------------------------------------------------------------------------------------------------------------------------------
+       3          -1                   -1                   Private_Company     
+       29         -1                   -1                   Private_Parking     
+       18         -1                   -1                   Private_Text        
+       3          1000                 11                   AdditionalSigns     
+       3          1000                 21                   AdditionalSigns     
+       3          1000                 32                   AdditionalSigns     
+       37         1000001              -1                   TrafficLight        
+       11         1000002              -1                   TrafficLight        
+       2          1000007              -1                   TrafficLight        
+       2          1004                 30                   AdditionalSigns     
+       1          1006                 -1                   AdditionalSigns     
+       17         1012                 -1                   AdditionalSigns     
+       4          1012                 50                   AdditionalSigns     
+       2          1012                 51                   AdditionalSigns     
+       2          102                  -1                   WarningSigns        
+       3          1022                 10                   AdditionalSigns     
+       1          1024                 16                   AdditionalSigns     
+       2          1024                 20                   AdditionalSigns     
+       2          1040                 -1                   AdditionalSigns     
+       4          1040                 31                   AdditionalSigns     
+       76         1042                 -1                   AdditionalSigns     
+       2          1042                 31                   AdditionalSigns     
+       1          1044                 11                   AdditionalSigns     
+       6          1053                 34                   AdditionalSigns     
+       7          1060                 31                   AdditionalSigns     
+       1          125                  -1                   WarningSigns        
+       4          131                  -1                   WarningSigns        
+       3          136                  10                   WarningSigns        
+       1          138                  10                   WarningSigns        
+       22         205                  -1                   RegulatorySigns     
+       2          209                  30                   RegulatorySigns     
+       2          214                  -1                   RegulatorySigns     
+       3          220                  10                   RegulatorySigns     
+       3          220                  20                   RegulatorySigns     
+       3          222                  -1                   RegulatorySigns     
+       5          224                  -1                   RegulatorySigns     
+       8          237                  -1                   RegulatorySigns     
+       7          241                  30                   RegulatorySigns     
+       1          254                  -1                   RegulatorySigns     
+       8          267                  -1                   RegulatorySigns     
+       3          274                  30                   RegulatorySigns     
+       1          274                  50                   RegulatorySigns     
+       9          274.1                -1                   RegulatorySigns     
+       10         274.2                -1                   RegulatorySigns     
+       20         283                  10                   RegulatorySigns     
+       26         283                  20                   RegulatorySigns     
+       9          283                  30                   RegulatorySigns     
+       9          286                  10                   RegulatorySigns     
+       9          286                  20                   RegulatorySigns     
+       2          286                  30                   RegulatorySigns     
+       2          290.1                -1                   RegulatorySigns     
+       5          290.2                -1                   RegulatorySigns     
+       27         293                  -1                   RegulatorySigns     
+       27         294                  -1                   RegulatorySigns     
+       39         297                  -1                   RegulatorySigns     
+       1          301                  -1                   InformationSigns    
+       11         306                  -1                   InformationSigns    
+       1          314                  -1                   InformationSigns    
+       23         314                  10                   InformationSigns    
+       21         314                  20                   InformationSigns    
+       8          314                  30                   InformationSigns    
+       1          315                  56                   InformationSigns    
+       1          315                  57                   InformationSigns    
+       6          356                  -1                   InformationSigns    
+       1          365                  65                   InformationSigns    
+       1          418                  20                   InformationSigns    
+       2          430                  10                   InformationSigns    
+       4          430                  20                   InformationSigns    
+       1          432                  10                   InformationSigns    
+       1          432                  20                   InformationSigns    
+       34         437                  -1                   InformationSigns    
+       1          533                  -1                   InformationSigns    
+       1          605                  -1                   RoadEquipment       
+       ----      
+       631        total
