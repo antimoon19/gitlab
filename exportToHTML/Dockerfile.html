@@ -1,0 +1,45 @@
+<html>
+<head>
+<title>Dockerfile</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #2aacb8;}
+.s3 { color: #bcbec4;}
+.s4 { color: #6aab73;}
+.ls0 { height: 1px; border-width: 0; color: #43454a; background-color:#43454a}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Dockerfile</font>
+</center></td></tr></table>
+<pre><span class="s0">FROM </span><span class="s1">python:</span><span class="s2">3.9 </span><span class="s1">AS build</span>
+
+<span class="s0">RUN </span><span class="s1">pip install poetry</span>
+<span class="s0">WORKDIR /</span><span class="s1">app</span>
+
+<span class="s0">COPY </span><span class="s1">commonroad_dataset_converter </span><span class="s0">/</span><span class="s1">app</span><span class="s0">/</span><span class="s1">commonroad_dataset_converter</span>
+<span class="s0">COPY </span><span class="s1">pyproject</span><span class="s3">.</span><span class="s1">toml </span><span class="s0">/</span><span class="s1">app</span><span class="s0">/</span>
+<span class="s0">COPY </span><span class="s1">README</span><span class="s3">.</span><span class="s1">md </span><span class="s0">/</span><span class="s1">app</span><span class="s0">/</span>
+
+<span class="s0">RUN </span><span class="s1">poetry export </span><span class="s0">-</span><span class="s1">o requirements</span><span class="s3">.</span><span class="s1">txt </span><span class="s0">--</span><span class="s1">without-hashes</span>
+<span class="s0">RUN </span><span class="s1">poetry build </span><span class="s0">-</span><span class="s1">f wheel</span>
+<hr class="ls0"><span class="s0">FROM </span><span class="s1">python:</span><span class="s2">3.9</span><span class="s0">-</span><span class="s1">slim AS app</span>
+
+<span class="s0">RUN </span><span class="s1">apt-get update </span><span class="s0">&amp;&amp; </span><span class="s1">apt-get install </span><span class="s0">-</span><span class="s1">y gcc cmake</span>
+
+<span class="s0">COPY --</span><span class="s1">from=build </span><span class="s0">/</span><span class="s1">app</span><span class="s0">/</span><span class="s1">requirements</span><span class="s3">.</span><span class="s1">txt </span><span class="s0">/</span><span class="s1">app</span><span class="s0">/</span><span class="s1">requirements</span><span class="s3">.</span><span class="s1">txt</span>
+<span class="s0">RUN </span><span class="s1">pip install </span><span class="s0">--</span><span class="s1">no-cache-dir </span><span class="s0">--</span><span class="s1">upgrade </span><span class="s0">-</span><span class="s1">r </span><span class="s0">/</span><span class="s1">app</span><span class="s0">/</span><span class="s1">requirements</span><span class="s3">.</span><span class="s1">txt </span><span class="s0">&amp;&amp; </span><span class="s1">rm </span><span class="s0">/</span><span class="s1">app</span><span class="s0">/</span><span class="s1">requirements</span><span class="s3">.</span><span class="s1">txt</span>
+
+<span class="s0">ARG </span><span class="s1">WHEEL_NAME=</span><span class="s4">&quot;commonroad_dataset_converter-2023.2-py3-none-any.whl&quot;</span>
+<span class="s0">COPY --</span><span class="s1">from=build </span><span class="s0">/</span><span class="s1">app</span><span class="s0">/</span><span class="s1">dist</span><span class="s0">/</span><span class="s1">${WHEEL_NAME} </span><span class="s0">/</span><span class="s1">app</span><span class="s0">/</span>
+<span class="s0">RUN </span><span class="s1">pip install </span><span class="s0">/</span><span class="s1">app</span><span class="s0">/</span><span class="s1">${WHEEL_NAME} </span><span class="s0">&amp;&amp; </span><span class="s1">rm </span><span class="s0">/</span><span class="s1">app</span><span class="s0">/</span><span class="s1">${WHEEL_NAME}</span>
+
+<span class="s0">ENTRYPOINT </span><span class="s3">[</span><span class="s4">&quot;crconvert&quot;</span><span class="s3">]</span>
+<span class="s0">CMD </span><span class="s3">[</span><span class="s4">&quot;--help&quot;</span><span class="s3">]</span></pre>
+</body>
+</html>

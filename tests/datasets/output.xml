@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<commonRoad>
+  <header version="2020b" description="Beispielszenario" date="2024-06-03"/>
+  <dynamicObstacles>
+    <dynamicObstacle id="1">
+      <stateList>
+        <state time="-313.36" x="39.0555049724117" y="7.864762195416548" vx="-0.1652640553331871" vy="-0.0140436439484803" ax="0.0763445221738455" ay="0.006487528607868"/>
+      </stateList>
+    </dynamicObstacle>
+  </dynamicObstacles>
+</commonRoad>

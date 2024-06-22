@@ -1,0 +1,124 @@
+<html>
+<head>
+<title>README.md</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #56a8f5;}
+.s4 { color: #c77dbb; font-style: italic;}
+.s5 { color: #6aab73;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+README.md</font>
+</center></td></tr></table>
+<pre><span class="s0"># </span><span class="s2">Dataset Converters</span>
+
+<span class="s2">This repository contains converters from different datasets to CommonRoad scenarios using a common commandline interface.</span>
+<span class="s2">Currently, we support</span><span class="s1">:</span>
+
+<span class="s0">-   </span><span class="s1">[</span><span class="s2">highD</span><span class="s1">](</span><span class="s3">https://www.highd-dataset.com/</span><span class="s1">)</span><span class="s2">,</span>
+<span class="s0">-   </span><span class="s1">[</span><span class="s2">inD</span><span class="s1">](</span><span class="s3">https://www.ind-dataset.com/</span><span class="s1">)</span><span class="s2">,</span>
+<span class="s0">-   </span><span class="s1">[</span><span class="s2">INTERACTION</span><span class="s1">](</span><span class="s3">http://interaction-dataset.com/</span><span class="s1">)</span><span class="s2">,</span>
+<span class="s0">-   </span><span class="s1">[</span><span class="s2">exiD</span><span class="s1">](</span><span class="s3">https://www.exid-dataset.com/</span><span class="s1">)</span><span class="s2">,</span>
+<span class="s0">-   </span><span class="s1">[</span><span class="s2">rounD</span><span class="s1">](</span><span class="s3">https://www.round-dataset.com/</span><span class="s1">)</span><span class="s2">,</span>
+<span class="s0">-   </span><span class="s1">[</span><span class="s2">MONA</span><span class="s1">](</span><span class="s3">https://commonroad.in.tum.de/datasets</span><span class="s1">)</span><span class="s2">,</span>
+<span class="s0">-   </span><span class="s1">[</span><span class="s2">SIND</span><span class="s1">](</span><span class="s3">https://github.com/SOTIF-AVLab/SinD</span><span class="s1">)</span><span class="s2">.</span>
+
+<span class="s0">## </span><span class="s2">Install</span>
+
+<span class="s0">```</span><span class="s4">bash</span>
+<span class="s5">pip install commonroad-dataset-converter</span>
+<span class="s0">```</span>
+
+<span class="s0">### </span><span class="s2">Install with support for nuplan dataset</span>
+
+<span class="s0">```</span><span class="s4">bash</span>
+<span class="s5">pip install commonroad-dataset-converter[nuplan]</span>
+<span class="s0">```</span>
+
+<span class="s0">## </span><span class="s2">Development setup</span>
+
+<span class="s2">This project uses </span><span class="s1">[</span><span class="s2">poetry</span><span class="s1">](</span><span class="s3">https://python-poetry.org/</span><span class="s1">)</span><span class="s2">. Please follow the instructions to create the virtual development environment.</span>
+
+<span class="s0">## </span><span class="s2">Usage</span>
+
+<span class="s2">Type following command for help</span>
+
+<span class="s0">```</span><span class="s4">bash</span>
+<span class="s5">$ crconvert --help</span>
+<span class="s5">Usage: crconvert [OPTIONS] INPUT_DIR OUTPUT_DIR COMMAND [ARGS]...</span>
+
+  <span class="s5">Generates CommonRoad scenarios from different datasets</span>
+
+<span class="s5">Arguments:</span>
+  <span class="s5">INPUT_DIR   Path to the data folder  [required]</span>
+  <span class="s5">OUTPUT_DIR  Directory to store generated CommonRoad files  [required]</span>
+
+<span class="s5">Options:</span>
+  <span class="s5">--num-time-steps INTEGER        Maximum number of time steps in the</span>
+                                  <span class="s5">CommonRoad scenario  [default: 150]</span>
+  <span class="s5">--num-planning-problems INTEGER</span>
+                                  <span class="s5">Number of planning problems per CommonRoad</span>
+                                  <span class="s5">scenario. More than one creates a</span>
+                                  <span class="s5">cooperative scenario.  [default: 1]</span>
+  <span class="s5">--keep-ego / --no-keep-ego      Vehicles used for planning problem should be</span>
+                                  <span class="s5">kept in the scenario.  [default: no-keep-</span>
+                                  <span class="s5">ego]</span>
+  <span class="s5">--obstacles-start-at-zero / --no-obstacles-start-at-zero</span>
+                                  <span class="s5">The lowest time step in the scenario is set</span>
+                                  <span class="s5">to zero.  [default: no-obstacles-start-at-</span>
+                                  <span class="s5">zero]</span>
+  <span class="s5">--downsample INTEGER            Decrease dt by n*dt  [default: 1]</span>
+  <span class="s5">--num-processes INTEGER         Number of processes to convert dataset.</span>
+                                  <span class="s5">[default: 1]</span>
+  <span class="s5">--all-vehicles / --no-all-vehicles</span>
+                                  <span class="s5">Create one planning problem/scenario for</span>
+                                  <span class="s5">each valid vehicle. Invalidates num-time-</span>
+                                  <span class="s5">steps.  [default: no-all-vehicles]</span>
+  <span class="s5">--routability-check [nocheck|strict]</span>
+                                  <span class="s5">Check routability of planning_problem</span>
+                                  <span class="s5">[default: RoutabilityCheck.Strict]</span>
+  <span class="s5">--output-type [xml|pb]          File type of CommonRoad scenarios  [default:</span>
+                                  <span class="s5">xml]</span>
+  <span class="s5">--max-scenarios INTEGER         Only create up to n scenarios.</span>
+  <span class="s5">--samples-per-recording INTEGER</span>
+                                  <span class="s5">Randomly sample n scenarios from each</span>
+                                  <span class="s5">recording.</span>
+  <span class="s5">--help                          Show this message and exit.</span>
+
+<span class="s5">Commands:</span>
+  <span class="s5">exid         Convert the exiD dataset into CommonRoad scenario(s).</span>
+  <span class="s5">highd        Convert the highD dataset into CommonRoad scenario(s).</span>
+  <span class="s5">ind          Convert the inD dataset into CommonRoad scenario(s).</span>
+  <span class="s5">interaction  Convert the INTERACTION dataset into CommonRoad scenario(s).</span>
+  <span class="s5">mona         Convert the MONA dataset into CommonRoad scenario(s).</span>
+  <span class="s5">round        Convert the rounD dataset into CommonRoad scenario(s).</span>
+  <span class="s5">sind         Convert the SIND into CommonRoad scenario(s).</span>
+
+<span class="s0">```</span>
+
+<span class="s0">## </span><span class="s2">Docker</span>
+
+<span class="s2">The dataset converter can also be used within a docker container. We provide a </span><span class="s1">[</span><span class="s2">Dockerfile</span><span class="s1">](</span><span class="s2">./Dockerfile</span><span class="s1">) </span><span class="s2">to build the image.</span>
+
+<span class="s0">```</span><span class="s4">bash</span>
+<span class="s5">docker build -t commonroad-dataset-converter .</span>
+<span class="s0">```</span>
+
+<span class="s2">The image's entrypoint calls `crconvert`. Any arguments passed to `docker run` are passed to the executable. To access the original dataset and converted scenarios, provide it as a volume mount `-v PATH_TO_DATASET</span><span class="s1">:</span><span class="s2">/data</span><span class="s1">:</span><span class="s2">ro` and `-v PATH_TO_OUTPUT_DIRECTORY</span><span class="s1">:</span><span class="s2">/output`</span>
+
+<span class="s2">Example</span><span class="s1">: </span><span class="s2">Convert the highD dataset</span>
+
+<span class="s0">```</span><span class="s4">bash</span>
+<span class="s5">docker run -v `pwd`/highd_dataset:/data:ro -v `pwd`/highd_scenarios:/output commonroad-dataset-converter \</span>
+    <span class="s5">--max-scenarios 20 --samples-per-recording 20 /data /output highd</span>
+<span class="s0">```</span>
+</pre>
+</body>
+</html>

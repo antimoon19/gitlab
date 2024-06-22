@@ -1,0 +1,135 @@
+<html>
+<head>
+<title>.gitlab-ci.yml</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #bcbec4;}
+.s4 { color: #6aab73;}
+.s5 { color: #5f826b; font-style: italic;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+.gitlab-ci.yml</font>
+</center></td></tr></table>
+<pre><span class="s0">image</span><span class="s1">: </span><span class="s3">python:3.10</span>
+
+<span class="s0">stages</span><span class="s1">:</span>
+  <span class="s1">- </span><span class="s3">style</span>
+  <span class="s1">- </span><span class="s3">test</span>
+  <span class="s1">- </span><span class="s3">build</span>
+  <span class="s1">- </span><span class="s3">deploy</span>
+
+<span class="s0">before_script</span><span class="s1">:</span>
+  <span class="s1">- </span><span class="s3">pip install poetry</span>
+  <span class="s1">- </span><span class="s3">poetry config virtualenvs.in-project true</span>
+  <span class="s1">- </span><span class="s3">poetry install</span>
+  <span class="s1">- </span><span class="s3">source .venv/bin/activate</span>
+
+<span class="s0">unittest</span><span class="s1">:</span>
+  <span class="s0">image </span><span class="s1">: </span><span class="s3">python:$PYTHON_VERSIONS</span>
+  <span class="s0">stage</span><span class="s1">: </span><span class="s3">test</span>
+  <span class="s0">parallel </span><span class="s1">:</span>
+    <span class="s0">matrix </span><span class="s1">:</span>
+      <span class="s1">- </span><span class="s0">PYTHON_VERSIONS </span><span class="s1">: [ </span><span class="s4">&quot;3.8&quot;</span><span class="s1">, </span><span class="s4">&quot;3.9&quot;</span><span class="s1">, </span><span class="s4">&quot;3.10&quot;</span><span class="s1">]</span>
+  <span class="s0">script</span><span class="s1">:</span>
+    <span class="s1">- </span><span class="s3">poetry run python -m unittest discover tests/unittests</span>
+
+<span class="s0">dataset_test</span><span class="s1">:</span>
+  <span class="s0">image </span><span class="s1">: </span><span class="s3">python:$PYTHON_VERSIONS</span>
+  <span class="s0">stage</span><span class="s1">: </span><span class="s3">test</span>
+  <span class="s0">before_script</span><span class="s1">: []</span>
+  <span class="s0">parallel </span><span class="s1">:</span>
+    <span class="s0">matrix </span><span class="s1">:</span>
+      <span class="s1">- </span><span class="s0">PYTHON_VERSIONS </span><span class="s1">: [ </span><span class="s4">&quot;3.8&quot;</span><span class="s1">, </span><span class="s4">&quot;3.9&quot;</span><span class="s1">, </span><span class="s4">&quot;3.10&quot;</span><span class="s1">]</span>
+  <span class="s0">script</span><span class="s1">:</span>
+    <span class="s1">- </span><span class="s3">pip install .</span>
+    <span class="s1">- </span><span class="s3">python -m unittest discover tests/datasets</span>
+
+<span class="s5">#test_nuplan :</span>
+<span class="s5">#  stage : test</span>
+<span class="s5">#  image : python:3.9</span>
+<span class="s5">#  allow_failure : true</span>
+<span class="s5">#  script :</span>
+<span class="s5">#    - poetry install -E nuplan</span>
+<span class="s5">#    - poetry run python -m unittest tests/test_nuplan.py</span>
+
+<span class="s0">flake8</span><span class="s1">:</span>
+  <span class="s0">stage</span><span class="s1">: </span><span class="s3">style</span>
+  <span class="s0">before_script</span><span class="s1">: []</span>
+  <span class="s0">script</span><span class="s1">:</span>
+    <span class="s1">- </span><span class="s3">pip install flake8 flake8-todo</span>
+    <span class="s1">- </span><span class="s3">flake8 commonroad_dataset_converter</span>
+  <span class="s0">allow_failure</span><span class="s1">: </span><span class="s3">true</span>
+
+<span class="s0">black</span><span class="s1">:</span>
+  <span class="s0">stage</span><span class="s1">: </span><span class="s3">style</span>
+  <span class="s0">needs</span><span class="s1">: []</span>
+  <span class="s0">image</span><span class="s1">: </span><span class="s3">pyfound/black:22.6.0</span>
+  <span class="s0">before_script</span><span class="s1">: []</span>
+  <span class="s0">cache</span><span class="s1">: []</span>
+  <span class="s0">script</span><span class="s1">:</span>
+    <span class="s1">- </span><span class="s3">black --check --verbose --diff --color commonroad_dataset_converter</span>
+
+<span class="s0">sphinx</span><span class="s1">:</span>
+  <span class="s0">stage</span><span class="s1">: </span><span class="s3">test</span>
+  <span class="s0">needs</span><span class="s1">: []</span>
+  <span class="s0">script</span><span class="s1">:</span>
+    <span class="s1">- </span><span class="s3">poetry install --with doc</span>
+    <span class="s1">- </span><span class="s3">apt update &amp;&amp; apt install -y graphviz</span>
+    <span class="s1">- </span><span class="s3">cd doc &amp;&amp; poetry run make html &amp;&amp; poetry run make html SPHINXOPTS=&quot;-W&quot;</span>
+
+<span class="s0">publish_internal</span><span class="s1">:</span>
+  <span class="s0">stage</span><span class="s1">: </span><span class="s3">build</span>
+  <span class="s0">when</span><span class="s1">: </span><span class="s3">manual</span>
+  <span class="s0">only</span><span class="s1">:</span>
+    <span class="s1">- </span><span class="s3">master</span>
+  <span class="s0">script</span><span class="s1">:</span>
+    <span class="s1">- </span><span class="s3">poetry config repositories.gitlab ${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/pypi</span>
+    <span class="s1">- </span><span class="s3">poetry build</span>
+    <span class="s1">- </span><span class="s3">poetry publish --repository gitlab -u gitlab-ci-token -p ${CI_JOB_TOKEN}</span>
+  <span class="s0">environment</span><span class="s1">:</span>
+    <span class="s0">name</span><span class="s1">: </span><span class="s3">staging</span>
+    <span class="s0">url</span><span class="s1">: </span><span class="s3">${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/pypi</span>
+
+<span class="s0">pages</span><span class="s1">:</span>
+  <span class="s0">stage</span><span class="s1">: </span><span class="s3">deploy</span>
+  <span class="s0">needs</span><span class="s1">:</span>
+    <span class="s1">- </span><span class="s3">sphinx</span>
+  <span class="s0">script</span><span class="s1">:</span>
+    <span class="s1">- </span><span class="s3">poetry install --with doc</span>
+    <span class="s1">- </span><span class="s3">apt update &amp;&amp; apt install -y graphviz</span>
+    <span class="s1">- </span><span class="s3">cd doc &amp;&amp; poetry run sphinx-build -b html . ../public &amp;&amp; poetry run sphinx-build -b html . ../public</span>
+  <span class="s0">artifacts</span><span class="s1">:</span>
+    <span class="s0">paths</span><span class="s1">:</span>
+      <span class="s1">- </span><span class="s3">public</span>
+  <span class="s0">only</span><span class="s1">:</span>
+    <span class="s1">- </span><span class="s3">develop</span>
+
+<span class="s0">push_to_external_pipy_test_registry</span><span class="s1">:</span>
+  <span class="s0">stage</span><span class="s1">: </span><span class="s3">deploy</span>
+  <span class="s0">when</span><span class="s1">: </span><span class="s3">manual</span>
+  <span class="s0">only</span><span class="s1">:</span>
+    <span class="s1">- </span><span class="s3">master</span>
+  <span class="s0">script</span><span class="s1">:</span>
+    <span class="s1">- </span><span class="s3">poetry config repositories.test https://test.pypi.org/legacy/</span>
+    <span class="s1">- </span><span class="s3">poetry build</span>
+    <span class="s1">- </span><span class="s3">poetry publish --repository test -u __token__ -p ${CR_PYPI_TEST_API_TOKEN}</span>
+
+<span class="s0">push_to_external_pipy_release_registry</span><span class="s1">:</span>
+  <span class="s0">stage</span><span class="s1">: </span><span class="s3">deploy</span>
+  <span class="s0">when</span><span class="s1">: </span><span class="s3">manual</span>
+  <span class="s0">only</span><span class="s1">:</span>
+    <span class="s1">- </span><span class="s3">master</span>
+  <span class="s0">script</span><span class="s1">:</span>
+    <span class="s1">- </span><span class="s3">poetry build</span>
+    <span class="s1">- </span><span class="s3">poetry publish -u __token__ -p ${CR_PYPI_RELEASE_API_TOKEN}</span>
+
+</pre>
+</body>
+</html>
