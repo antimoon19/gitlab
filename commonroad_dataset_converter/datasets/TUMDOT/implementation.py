@@ -47,6 +47,7 @@ def create_dynamic_obstacles(csv_data):
 
 
 
+
         track_meta = pd.Series({
             'obstacle_type': obstacle_type,
             'length': row['dimension_x'],
