@@ -43,11 +43,6 @@ def create_dynamic_obstacles(csv_data):
     for idx, (i, row) in enumerate(csv_data.iterrows(), start=1):
         obstacle_type = INTEGER_TO_OBSTACLE_TYPE.get(row['category'], ObstacleType.UNKNOWN)
         dynamic_obstacle_id = idx
-
-
-
-
-
         track_meta = pd.Series({
             'obstacle_type': obstacle_type,
             'length': row['dimension_x'],
@@ -67,9 +62,11 @@ def create_dynamic_obstacles(csv_data):
         obstacle = _create_obstacle(track_df, track_meta, dynamic_obstacle_id)
         obstacles.append(obstacle)
 
+
     return obstacles
 
 def main():
+
     csv_data_path = '/home/valery/PycharmProjects/commonroad-dataset-converter5/tests/resources/TUMDOT-MUC/Trajectory Data/test_csv'
     input_xml_path = '/home/valery/PycharmProjects/commonroad-dataset-converter5/commonroad_dataset_converter/datasets/TUMDOT/output_file6.xml'
     output_xml_path = '/home/valery/PycharmProjects/commonroad-dataset-converter5/commonroad_dataset_converter/datasets/TUMDOT/output_file8.xml'

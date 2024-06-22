@@ -1,0 +1,40 @@
+<html>
+<head>
+<title>.pre-commit-config.yaml</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #5f826b; font-style: italic;}
+.s4 { color: #bcbec4;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+.pre-commit-config.yaml</font>
+</center></td></tr></table>
+<pre><span class="s0">repos</span><span class="s1">:</span>
+  <span class="s3"># Format yaml</span>
+  <span class="s1">- </span><span class="s0">repo</span><span class="s1">: </span><span class="s4">https://github.com/pre-commit/mirrors-prettier</span>
+    <span class="s0">rev</span><span class="s1">: </span><span class="s4">v2.5.1</span>
+    <span class="s0">hooks</span><span class="s1">:</span>
+      <span class="s1">- </span><span class="s0">id</span><span class="s1">: </span><span class="s4">prettier</span>
+        <span class="s0">files</span><span class="s1">: </span><span class="s4">\.(json|markdown|md|yaml|yml)$</span>
+    <span class="s3"># Sort imports</span>
+  <span class="s1">- </span><span class="s0">repo</span><span class="s1">: </span><span class="s4">https://github.com/pycqa/isort</span>
+    <span class="s0">rev</span><span class="s1">: </span><span class="s4">5.12.0</span>
+    <span class="s0">hooks</span><span class="s1">:</span>
+      <span class="s1">- </span><span class="s0">id</span><span class="s1">: </span><span class="s4">isort</span>
+        <span class="s0">name</span><span class="s1">: </span><span class="s4">isort (python)</span>
+        <span class="s0">args</span><span class="s1">: [</span><span class="s4">--profile</span><span class="s1">, </span><span class="s4">black</span><span class="s1">, </span><span class="s4">--filter-files</span><span class="s1">, </span><span class="s4">--line-width=88</span><span class="s1">]</span>
+    <span class="s3"># Use the black formatter</span>
+  <span class="s1">- </span><span class="s0">repo</span><span class="s1">: </span><span class="s4">https://github.com/psf/black</span>
+    <span class="s0">rev</span><span class="s1">: </span><span class="s4">22.6.0</span>
+    <span class="s0">hooks</span><span class="s1">:</span>
+      <span class="s1">- </span><span class="s0">id</span><span class="s1">: </span><span class="s4">black</span>
+</pre>
+</body>
+</html>

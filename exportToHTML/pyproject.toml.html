@@ -1,0 +1,75 @@
+<html>
+<head>
+<title>pyproject.toml</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #bcbec4;}
+.s1 { color: #cf8e6d;}
+.s2 { color: #6aab73;}
+.s3 { color: #bcbec4;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+pyproject.toml</font>
+</center></td></tr></table>
+<pre><span class="s0">[</span><span class="s1">tool</span><span class="s0">.</span><span class="s1">poetry</span><span class="s0">]</span>
+<span class="s1">name </span><span class="s0">= </span><span class="s2">&quot;commonroad-dataset-converter&quot;</span>
+<span class="s1">version </span><span class="s0">= </span><span class="s2">&quot;2023.2&quot;</span>
+<span class="s1">description </span><span class="s0">= </span><span class="s2">&quot;CommonRoad Dataset Converter&quot;</span>
+<span class="s1">authors </span><span class="s0">= [</span><span class="s2">&quot;Cyber-Physical Systems Group, Technical University of Munich &lt;commonroad@lists.lrz.de&gt;&quot;</span><span class="s0">]</span>
+<span class="s1">license </span><span class="s0">= </span><span class="s2">&quot;BSD-3-Clause&quot;</span>
+<span class="s1">readme </span><span class="s0">= </span><span class="s2">&quot;README.md&quot;</span>
+<span class="s1">packages </span><span class="s0">= [{ </span><span class="s1">include </span><span class="s0">= </span><span class="s2">&quot;commonroad_dataset_converter&quot; </span><span class="s0">}]</span>
+<span class="s1">homepage </span><span class="s0">= </span><span class="s2">&quot;https://commonroad.in.tum.de&quot;</span>
+<span class="s1">classifiers </span><span class="s0">= [</span>
+    <span class="s2">&quot;Programming Language :: Python&quot;</span><span class="s0">,</span>
+    <span class="s2">&quot;Programming Language :: Python :: 3&quot;</span><span class="s0">,</span>
+    <span class="s2">&quot;Programming Language :: Python :: 3.8&quot;</span><span class="s0">,</span>
+    <span class="s2">&quot;Programming Language :: Python :: 3.9&quot;</span><span class="s0">,</span>
+    <span class="s2">&quot;Programming Language :: Python :: 3.10&quot;</span><span class="s0">,</span>
+    <span class="s2">&quot;Operating System :: OS Independent&quot;</span><span class="s0">,</span>
+<span class="s0">]</span>
+<span class="s1">exclude </span><span class="s0">= [</span><span class="s2">&quot;**/*.ipynb&quot;</span><span class="s0">]</span>
+
+<span class="s0">[</span><span class="s1">tool</span><span class="s0">.</span><span class="s1">poetry</span><span class="s0">.</span><span class="s1">dependencies</span><span class="s0">]</span>
+<span class="s1">python </span><span class="s0">= </span><span class="s2">&quot;&gt;=3.8,&lt;3.11&quot;</span>
+<span class="s1">numpy </span><span class="s0">= </span><span class="s2">&quot;^1.21&quot;</span>
+<span class="s1">scipy </span><span class="s0">= </span><span class="s2">&quot;&gt;=1.4.1&quot;</span>
+<span class="s1">pandas </span><span class="s0">= </span><span class="s2">&quot;&gt;=0.24.2&quot;</span>
+<span class="s1">ruamel-yaml </span><span class="s0">= </span><span class="s2">&quot;&gt;=0.16.10&quot;</span>
+<span class="s1">commonroad-io </span><span class="s0">= </span><span class="s2">&quot;&gt;=2023.2&quot;</span>
+<span class="s1">typer </span><span class="s0">= </span><span class="s2">&quot;&gt;=0.4.0&quot;</span>
+<span class="s1">tqdm </span><span class="s0">= </span><span class="s2">&quot;^4.64.1&quot;</span>
+<span class="s1">pyproj </span><span class="s0">= </span><span class="s2">&quot;^3.4.0&quot;</span>
+<span class="s1">pyarrow </span><span class="s0">= </span><span class="s2">&quot;&gt;=10.0.1&quot;</span>
+<span class="s1">commonroad-route-planner </span><span class="s0">= </span><span class="s2">&quot;^2022.3&quot;</span>
+<span class="s1">commonroad-drivability-checker </span><span class="s0">= </span><span class="s2">&quot;^2023.1&quot;</span>
+<span class="s1">pydantic </span><span class="s0">= </span><span class="s2">&quot;^2.3.0&quot;</span>
+
+
+<span class="s0">[</span><span class="s1">tool</span><span class="s0">.</span><span class="s1">poetry</span><span class="s0">.</span><span class="s1">scripts</span><span class="s0">]</span>
+<span class="s1">crconvert </span><span class="s0">= </span><span class="s2">'commonroad_dataset_converter.main:cli'</span>
+
+<span class="s0">[</span><span class="s1">tool</span><span class="s0">.</span><span class="s1">poetry</span><span class="s0">.</span><span class="s1">group</span><span class="s0">.</span><span class="s1">dev</span><span class="s0">]</span>
+<span class="s1">optional </span><span class="s0">= </span><span class="s3">true</span>
+
+<span class="s0">[</span><span class="s1">tool</span><span class="s0">.</span><span class="s1">poetry</span><span class="s0">.</span><span class="s1">group</span><span class="s0">.</span><span class="s1">dev</span><span class="s0">.</span><span class="s1">dependencies</span><span class="s0">]</span>
+<span class="s1">jupyter </span><span class="s0">= </span><span class="s2">&quot;^1.0.0&quot;</span>
+
+<span class="s0">[</span><span class="s1">tool</span><span class="s0">.</span><span class="s1">poetry</span><span class="s0">.</span><span class="s1">group</span><span class="s0">.</span><span class="s1">doc</span><span class="s0">]</span>
+<span class="s1">optional </span><span class="s0">= </span><span class="s3">true</span>
+
+<span class="s0">[</span><span class="s1">tool</span><span class="s0">.</span><span class="s1">poetry</span><span class="s0">.</span><span class="s1">group</span><span class="s0">.</span><span class="s1">doc</span><span class="s0">.</span><span class="s1">dependencies</span><span class="s0">]</span>
+<span class="s1">sphinx </span><span class="s0">= </span><span class="s2">&quot;^5.3.0&quot;</span>
+<span class="s1">myst-parser </span><span class="s0">= </span><span class="s2">&quot;^1.0.0&quot;</span>
+<span class="s1">sphinx-book-theme </span><span class="s0">= </span><span class="s2">&quot;^1.0.1&quot;</span>
+
+<span class="s0">[</span><span class="s1">build-system</span><span class="s0">]</span>
+<span class="s1">requires </span><span class="s0">= [</span><span class="s2">&quot;poetry-core&quot;</span><span class="s0">]</span>
+<span class="s1">build-backend </span><span class="s0">= </span><span class="s2">&quot;poetry.core.masonry.api&quot;</span>
+</pre>
+</body>
+</html>
