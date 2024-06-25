@@ -1,0 +1,9 @@
+locations:
+  DEU_appershofen-1: DEU_appershofen-1
+  DEU_brunn-1: DEU_brunn-1
+
+
+directory_data:
+  DEU_appershofen-1: /mnt/c/Users/Samghod/PycharmProjects/commonroad-dataset-converter/tests/resources/automatum/DEU_appershofen-1
+  DEU_brunn-1: /mnt/c/Users/Samghod/PycharmProjects/commonroad-dataset-converter/tests/resources/automatum/DEU_brunn-1
+
